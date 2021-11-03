@@ -1,22 +1,31 @@
 import { Column } from "./Column"
-import { AppContainer } from "./styles"
 import { AddNewItem } from "./AddNewItem"
 import { useAppState } from "./state/AppStateContext";
 import { addList } from "./state/actions";
+import styled from "styled-components";
 
 export const App = () => {
   const { lists, dispatch } = useAppState()
 
   return (
-    <AppContainer>
+    <Container>
       {lists.map((list) => (
         <Column text={list.text} key={list.id} id={list.id} />
       ))}
+
       <AddNewItem
         toggleButtonText="+ Add another list"
         onAdd={text => dispatch(addList(text))} />
-    </AppContainer>
+    </Container>
   );
 }
 
-
+const Container = styled.div`
+  align-items: flex-start;
+  background-color: #3179ba;
+  display: flex;
+  flex-direction: row;
+  height: 100%;
+  padding: 20px;
+  width: 100%;
+`

@@ -1,35 +1,38 @@
 import {DragItem} from "../DragItem";
 
+export enum ActionType {
+  SetDraggedItem,
+  AddList,
+  AddTask,
+  MoveList,
+}
+
 export type Action =
   | {
-      type: "SET_DRAGGED_ITEM"
+      type: ActionType.SetDraggedItem
       payload: DragItem | null
     }
   | {
-      type: "ADD_LIST"
+      type: ActionType.AddList
       payload: string
     }
   | {
-      type: "ADD_TASK"
+      type: ActionType.AddTask
       payload: { text: string; listId: string }
     }
   | {
-      type: "MOVE_LIST"
+      type: ActionType.MoveList
       payload: {
         draggedId: string
         hoverId: string
       }
-
   }
-
-
-
 
 export const addTask = (
   text: string,
   listId: string,
 ): Action => ({
-  type: "ADD_TASK",
+  type: ActionType.AddTask,
   payload: {
     text,
     listId
@@ -39,7 +42,7 @@ export const addTask = (
 export const addList = (
   text: string,
 ): Action => ({
-  type: "ADD_LIST",
+  type: ActionType.AddList,
   payload: text
 })
 
@@ -47,7 +50,7 @@ export const moveList = (
   draggedId: string,
   hoverId: string,
 ): Action => ({
-  type: "MOVE_LIST",
+  type: ActionType.MoveList,
   payload: {
     draggedId,
     hoverId,
@@ -57,6 +60,6 @@ export const moveList = (
 export  const setDraggedItem = (
   draggedItem: DragItem | null,
 ): Action => ({
-  type: "SET_DRAGGED_ITEM",
+  type: ActionType.SetDraggedItem,
   payload: draggedItem
 })

@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, {FC, PropsWithChildren, useState} from "react";
 import { NewItemFormContainer, NewItemButton, NewItemInput } from "./styles";
 import { useFocus } from "./utils/useFocus";
 
@@ -6,7 +6,7 @@ type NewItemFormProps = {
   onAdd(text: string): void
 }
 
-export const NewItemForm = ({ onAdd }: NewItemFormProps) => {
+export const NewItemForm: FC<NewItemFormProps> = ({ onAdd }) => {
   const [text, setText] = useState("")
   const inputRef = useFocus()
   const handleAddText = (
@@ -25,6 +25,7 @@ export const NewItemForm = ({ onAdd }: NewItemFormProps) => {
         onChange={e => setText(e.target.value)}
         onKeyPress={handleAddText}
       />
+
       <NewItemButton onClick={() => onAdd(text)}>
         Create
       </NewItemButton>

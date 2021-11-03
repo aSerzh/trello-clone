@@ -1,14 +1,5 @@
 import styled from "styled-components";
 
-export const AppContainer = styled.div`
-  align-items: flex-start;
-  background-color: #3179ba;
-  display: flex;
-  flex-direction: row;
-  height: 100%;
-  padding: 20px;
-  width: 100%;
-`
 export const DragPreviewContainer = styled.div<DragPreviewContainerProps>`
   opacity: ${props => (props.isHidden ? 0.3 : 1)};
 `
